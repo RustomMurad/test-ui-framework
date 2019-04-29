@@ -17,6 +17,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -69,7 +70,7 @@ public class HomePageTests {
         //WebElement searchBox = driver.findElement(By.name("q"));
         //searchBox.sendKeys("ChromeDriver");
         //searchBox.submit();
-        Thread.sleep(5000);  // Let the user actually see something!
+        Thread.sleep(10000);  // Let the user actually see something!
         Assert.assertEquals(driver.getTitle(), (actualTitle));
         //driver.quit();
     }
@@ -233,6 +234,14 @@ public class HomePageTests {
         Navigation checkLogo = new Navigation(driver);
         checkLogo.gotoLogo();
         Thread.sleep(5000);
+    }
+
+    @Test(priority = 12)
+    public void testNavigationPom() {
+        NavigationModel navigationPom = PageFactory.initElements(driver,NavigationModel.class);
+        navigationPom.isLogoDisplayed();
+        Assert.assertTrue(navigationPom.isLogoDisplayed());
+
     }
 
     @AfterTest()
