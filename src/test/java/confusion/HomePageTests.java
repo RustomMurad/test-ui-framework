@@ -17,6 +17,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -233,6 +234,12 @@ public class HomePageTests {
         Navigation checkLogo = new Navigation(driver);
         checkLogo.gotoLogo();
         Thread.sleep(5000);
+    }
+
+    @Test(priority = 12, enabled = true)
+    public void testNavigationPom(){
+        NavigationModel navigationPom = PageFactory.initElements(driver,NavigationModel.class);
+        Assert.assertTrue(navigationPom.isLogoDisplayed());
     }
 
     @AfterTest()
